@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>xdmakv</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cloud-redwanul.web.app/2/redwanul.css">
+  <style>
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      z-index: 1000;
+      opacity: 1;
+      transition: opacity 1s ease-in-out;
+    }
+    .overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- partial:index.partial.html -->
+  <script src="https://cloud-redwanul.web.app/3/hls.js"></script>
+  <script src="https://cloud-redwanul.web.app/2/redwanul.js"></script>
+
+  <div class="overlay" id="overlay">xdmakv.github.io/player</div>
+
+  <div class="container">
+    <video controls crossorigin playsinline>
+      <source type="application/x-mpegURL" src=""></source>
+    </video>
+  </div>
+  <!-- partial -->
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const m3u8URL = urlParams.get('url');
+
+    const videoSource = document.querySelector('video source');
+    videoSource.src = m3u8URL;
+
+    const videoPlayer = document.querySelector('video');
+    videoPlayer.load();
+
+    const overlay = document.getElementById('overlay');
+    setTimeout(() => {
+      overlay.classList.add('hidden');
+    }, 0);
+  </script>
+</body>
+</html>
